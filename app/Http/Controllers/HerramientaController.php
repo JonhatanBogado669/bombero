@@ -1,0 +1,121 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Herramienta;
+use App\Models\EstadoHerramienta;
+use App\Models\TipoHerramienta;
+use Illuminate\Http\Request;
+
+class HerramientaController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $data = Herramienta::join('estado_herramienta as e', 'e.id','=','herramienta.estado_herramienta_id')
+        ->join('tipo_herramienta as t', 't.id','=','herramienta.tipo_herramienta_id')
+        ->orderBy('herramienta.id','ASC')
+        ->get(['herramienta.id','herramienta.codigo','herramienta.nombre','e.id as idestado',
+        'e.descripcion as estado','t.id as idtipo','t.descripcion as tipo']);
+       
+        return view('herramienta/index', ['data' =>$data]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //$items = Items::list('')
+        $estado = EstadoHerramienta::all();
+        $tipo = TipoHerramienta::all();
+        return view('herramienta/create', compact('estado', 'tipo'));
+        //return view('herramienta/create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'codigo'=>'required',
+            'nombre'=>'required',
+            'estado_herramienta_id'=>'required',
+            'estado_herramienta_id'=>'required'
+        ]);
+        $inputs =$request->all(); 
+        Herramienta::create($inputs);
+
+        return redirect()->route('herramienta.index')
+                         ->with('success', 'Herramienta registrada satisfactoriamente.');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Herramienta  $herramienta
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Herramienta $herramienta)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Herramienta  $herramienta
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Herramienta $herramienta)
+    {
+        return view('herramienta.edit', compact('herramienta'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Herramienta  $herramienta
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Herramienta $herramienta)
+    {
+        $request->validate([
+            'codigo'=>'required',
+            'nombre'=>'required',
+            'estado_herramienta_id'=>'required',
+            'estado_herramienta_id'=>'required'
+        ]);
+
+        $herramienta->update($request->all());
+
+        return redirect()->route('herramienta.index')
+                         ->with('success','Registro de herramineta actualizado.');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Herramienta  $herramienta
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $herramienta=Herramienta::findOrFail($id);
+        $herramienta->delete();
+
+        return redirect()->route('herramienta.index')
+                         ->with('success','Registro de herramienta eliminado.');
+    }
+}

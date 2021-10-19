@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Registrar Herramientas</title>
+  </head>
+  <body>
+    <div  class="container">
+        <form action="{{ route('herramienta.update', $herramienta->id)}}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <h3>Registro Herramientas</h3> 
+                </div>
+                <div class="form-group">
+                    <label for="input">Código</label>
+                    <input type="text" class="form-control" id="codigo" name="codigo" value="{{$herramienta->codigo}}">
+                </div>
+                <div class="form-group">
+                    <label for="input">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre"  value="{{$herramienta->nombre}}">
+                </div>
+                <div class="form-group">
+                    <label for="input">Estado</label>
+                    <select class="form-control" name="estado_herramienta_id">
+                        <option selected>Seleccione una opción</option>
+                        @foreach($estado as $estados)
+                        <option value="{{$estados->id}}">{{$estados->descripcion}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="input">Tipo</label>
+                    <select class="form-control" id="tipo" name="tipo_herramienta_id">
+                        <option selected>Seleccione una opción</option>
+                        @foreach($tipo as $tipos)
+                        <option value="{{$tipos->id}}">{{$tipos->descripcion}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <a type="button" href="{{route('herramienta.index') }}" class="btn btn-danger">Cancelar</a>
+                </div>
+        </form>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
