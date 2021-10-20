@@ -28,18 +28,27 @@
                 <div class="form-group">
                     <label for="input">Estado</label>
                     <select class="form-control" name="estado_herramienta_id">
-                        <option selected>Seleccione una opción</option>
+                        
                         @foreach($estado as $estados)
+                        {{$estados->id==$herramienta->estado_herramienta_id}}
+                        @if ($estados->id==$herramienta->estado_herramienta_id)
+                        <option selected value="{{$estados->id}}">{{$estados->descripcion}}</option>
+                        @else
                         <option value="{{$estados->id}}">{{$estados->descripcion}}</option>
+                        @endif
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="input">Tipo</label>
                     <select class="form-control" id="tipo" name="tipo_herramienta_id">
-                        <option selected>Seleccione una opción</option>
-                        @foreach($tipo as $tipos)
+                    @foreach($tipo as $tipos)
+                        {{$tipos->id==$herramienta->tipo_herramienta_id}}
+                        @if ($tipos->id==$herramienta->tipo_herramienta_id)
+                        <option selected value="{{$tipos->id}}">{{$tipos->descripcion}}</option>
+                        @else
                         <option value="{{$tipos->id}}">{{$tipos->descripcion}}</option>
+                        @endif
                         @endforeach
                     </select>
                 </div>

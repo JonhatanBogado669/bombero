@@ -77,9 +77,12 @@ class HerramientaController extends Controller
      * @param  \App\Models\Herramienta  $herramienta
      * @return \Illuminate\Http\Response
      */
-    public function edit(Herramienta $herramienta)
+    public function edit($id)
     {
-        return view('herramienta.edit', compact('herramienta'));
+        $herramienta=Herramienta::find($id);
+        $estado = EstadoHerramienta::all();
+        $tipo = TipoHerramienta::all();
+        return view('herramienta.edit', compact('herramienta','estado','tipo'));
     }
 
     /**
@@ -89,17 +92,12 @@ class HerramientaController extends Controller
      * @param  \App\Models\Herramienta  $herramienta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Herramienta $herramienta)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'codigo'=>'required',
-            'nombre'=>'required',
-            'estado_herramienta_id'=>'required',
-            'estado_herramienta_id'=>'required'
-        ]);
-
-        $herramienta->update($request->all());
-
+        
+        $herramienta=Herramienta::find($id);
+        $herramienta->fill($request->all());
+        $herramienta->save();
         return redirect()->route('herramienta.index')
                          ->with('success','Registro de herramineta actualizado.');
     }
