@@ -17,7 +17,7 @@ class VehiculoController extends Controller
     public function index()
     {
         $data=Vehiculo::join('estado as e','vehiculo as v','e.id','=','v.estado_id')
-                ->join('tipo_vehiculo t','t.id','=','v.tipo_vehiculo_id')
+                ->join('tipo_vehiculo as t','t.id','=','v.tipo_vehiculo_id')
                 ->orderBy('v.id','ASC')
                 ->get(['v.id','v.patente','v.codigo','e.id as idestado','e.descripcion as estado',
                 't.id as idtipo','t.descripcion as tipo']);
