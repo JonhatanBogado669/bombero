@@ -22,6 +22,9 @@ Route::resource('herramienta', App\Http\Controllers\HerramientaController::class
 Route::resource('vehiculo', App\Http\Controllers\VehiculoController::class)->only([
     'index', 'show', 'create', 'store', 'edit', 'update', 'destroy',
 ]);
+Route::resource('insumo', App\Http\Controllers\InsumoController::class)->only([
+    'index', 'show', 'create', 'store', 'edit', 'update', 'destroy',
+]);
 Route::resource('estadoherramienta', App\Http\Controllers\EstadoHerramientaController::class)->only([
     'index']);
 //Route::get('herramienta', [HerramientaController::class, 'show'])->name('herramienta.show');
