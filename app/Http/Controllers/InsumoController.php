@@ -82,7 +82,7 @@ class InsumoController extends Controller
     public function update(Request $request, $id)
     {
         
-        $insumo=Herramienta::find($id);
+        $insumo=Insumo::find($id);
         $insumo->fill($request->all());
         $insumo->save();
         return redirect()->route('insumo.index')
