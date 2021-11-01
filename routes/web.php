@@ -19,6 +19,9 @@ Route::get('/', function () {
 Route::resource('herramienta', App\Http\Controllers\HerramientaController::class)->only([
     'index', 'show', 'create', 'store', 'edit', 'update', 'destroy',
 ]);
+Route::resource('bocaagua', App\Http\Controllers\BocaAguaController::class)->only([
+    'index', 'show', 'create', 'store', 'edit', 'update', 'destroy',
+]);
 Route::resource('vehiculo', App\Http\Controllers\VehiculoController::class)->only([
     'index', 'show', 'create', 'store', 'edit', 'update', 'destroy',
 ]);
