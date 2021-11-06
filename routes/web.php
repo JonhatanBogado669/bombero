@@ -31,6 +31,8 @@ Route::resource('insumo', App\Http\Controllers\InsumoController::class)->only([
 Route::resource('estadoherramienta', App\Http\Controllers\EstadoHerramientaController::class)->only([
     'index']);
 Route::resource('menu', App\Http\Controllers\MenuController::class)->only([
-        'index']);
+    'index']);
+Route::resource('personal', App\Http\Controllers\PersonalController::class)->only([
+    'index', 'show', 'create', 'store', 'edit', 'update', 'destroy',]);       
 //Route::get('herramienta', [HerramientaController::class, 'show'])->name('herramienta.show');
 //Route::post('herramienta', [HerramientaController::class, 'store'])->name('herramienta.store');*/

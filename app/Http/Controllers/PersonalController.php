@@ -17,12 +17,12 @@ class PersonalController extends Controller
      */
     public function index()
     {
-        $personal=Personal::join('tipo_rango as tr','tr.id','=','rango.tipo_rango_id')
-            ->join('rango','personal as p','rango.id','=','p.rango_id')
-            ->join('labor','labor.id','=','p.labor_id')
-            ->orderBy('p.id','ASC')
-            ->get(['p.id','p.nombre','p.telefono','p.documento','p.direccion',
-            'rango.id as idrango','rango.descripcion as rango','tr.descripcion as tiporango'
+        $personal=Personal::join('rango','rango.id','=','personal.rango_id')
+            ->join('labor','labor.id','=','personal.labor_id')
+            ->join('tipo_rango as tr','tr.id','=','rango.tipo_rango_id')
+            ->orderBy('personal.id','ASC')
+            ->get(['personal.id','personal.nombre','personal.telefono','personal.documento','personal.direccion',
+            'rango.id as idrango','rango.descripcion as rango','tr.descripcion as tipo_rango',
             'labor.id as idlabor','labor.nombre as labor']);
         return view('personal.index', ['personal' => $personal]);
     }
