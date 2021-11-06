@@ -19,19 +19,22 @@
               <th scope="col">Id</th>
               <th scope="col">Numero</th>
               <th scope="col">Descripcion</th>
-              <th scope="col">Boca de agua</th>
+              <th scope="col">Boca de Agua</th>
+              <th scope="col">Id de solicitud</th>
+              
             </tr>
           </thead>
           <tbody>
-            @foreach($siniestro as $sini)
+            @foreach($siniestro as $sn)
             <tr>
-                <th scope="sini">{{$sini->id}}</th>
-                <td>{{$sini->numero}}</td>
-                <td>{{$sini->descripcion}}</td>
-                <td>{{$sini->boca de agua}}</td>
+                <th scope="sn">{{$sn->id}}</th>
+                <td>{{$sn->numero}}</td>
+                <td>{{$sn->descripcion}}</td>
+                <td>{{$sn->boca_agua_id}}</td>
+                <td>{{$sn->solicitud_id}}</td>
                 <td>
-                  <form action="{{route('siniestro.destroy', $sini->id) }}" method="POST">
-                    <a class="btn btn-primary" href="{{route('siniestro.edit', $sini->id)}}">Edit</a>
+                  <form action="{{route('siniestro.destroy', $sn->id) }}" method="POST">
+                    <a class="btn btn-primary" href="{{route('siniestro.edit', $sn->id)}}">Edit</a>
 
                     @csrf
                     @method('DELETE')
@@ -43,7 +46,7 @@
             @endforeach
           </tbody>
         </table>
-        <a type="button" href="{{route('sini.create') }}" class="btn btn-primary">Crear</a>
+        <a type="button" href="{{route('siniestro.create') }}" class="btn btn-primary">Crear</a>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
