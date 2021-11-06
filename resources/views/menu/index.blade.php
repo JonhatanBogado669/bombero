@@ -15,7 +15,7 @@
         text-align:center;
       }
     </style>
-    <title>Menú</title>
+    <title>Menu</title>
   </head>
   <body>
       
@@ -24,18 +24,21 @@
         <div class="form-group">
           <h3>Menu de Registros</h3> 
         </div>
-        <div class="form-group">
+        
+          <a type="button" href="bocaagua" class="btn btn-primary">
+            <img src="img/boca-de-aguas.png" height="30" width="30">
+            Boca de Agua</a>
+      
           <a type="button" href="herramienta" class="btn btn-primary">Herramientas</a>
-        </div>
-        <div class="form-group">
-          <a type="button" href="vehiculo" class="btn btn-primary">Vehiculos</a>
-        </div>
-        <div class="form-group">
-          <a type="button" href="bocaagua" class="btn btn-primary">Boca de Agua</a>
-        </div>
-        <div class="form-group">
+        
           <a type="button" href="insumo" class="btn btn-primary">Insumos</a>
-        </div>
+
+          <a type="button" href="personal" class="btn btn-primary">Personal</a>
+
+          <a type="button" href="vehiculo" class="btn btn-primary">Vehiculos</a>
+
+          <a type="button" href="servicio" class="btn btn-primary">Tipos de Servicios</a>
+
       </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
