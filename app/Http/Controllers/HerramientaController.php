@@ -14,15 +14,18 @@ class HerramientaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Herramienta::join('estado_herramienta as e', 'e.id','=','herramienta.estado_herramienta_id')
+        $buscar=$request->get('buscar');
+        //$herramienta = Herramienta::where('nombre','like','%'.$buscar.'%');
+        $data = Herramienta::where('codigo','like','%'.$buscar.'%')
+        ->join('estado_herramienta as e', 'e.id','=','herramienta.estado_herramienta_id')
         ->join('tipo_herramienta as t', 't.id','=','herramienta.tipo_herramienta_id')
         ->orderBy('herramienta.id','ASC')
         ->get(['herramienta.id','herramienta.codigo','herramienta.nombre','e.id as idestado',
         'e.descripcion as estado','t.id as idtipo','t.descripcion as tipo']);
        
-        return view('herramienta/index', ['data' =>$data]);
+        return view('herramienta/index', compact('data','buscar'));
     }
 
     /**

@@ -14,14 +14,16 @@ class VehiculoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data=Vehiculo::join('estado as e','e.id','=','vehiculo.estado_id')
+        $buscar=$request->get('buscar');
+        $data=Vehiculo::where('codigo','like','%'.$buscar.'%')
+                ->join('estado as e','e.id','=','vehiculo.estado_id')
                 ->join('tipo_vehiculo as t','t.id','=','vehiculo.tipo_vehiculo_id')
                 ->orderBy('vehiculo.id','ASC')
                 ->get(['vehiculo.id','vehiculo.patente','vehiculo.codigo','e.id as idestado','e.descripcion as estado',
                 't.id as idtipo','t.descripcion as tipo']);
-        return view('vehiculo.index', ['data'=>$data]);
+        return view('vehiculo.index', ['data'=>$data, 'buscar'=>$buscar]);
     }
 
     /**

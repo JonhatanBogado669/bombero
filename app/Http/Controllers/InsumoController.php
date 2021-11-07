@@ -12,10 +12,13 @@ class InsumoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $insumo=Insumo::all();
-        return view('insumo.index', ['insumo' =>$insumo]);
+        $buscar=$request->get('buscar');
+
+        $insumo=Insumo::where('codigo','like','%'.$buscar.'%')
+            ->get(['recurso_e_insumo.id','recurso_e_insumo.descripcion','recurso_e_insumo.codigo','recurso_e_insumo.stock']);
+        return view('insumo.index', ['insumo' =>$insumo, 'buscar' =>$buscar]);
     }
 
     /**

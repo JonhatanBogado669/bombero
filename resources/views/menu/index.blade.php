@@ -25,9 +25,7 @@
           <h3>Menu de Registros</h3> 
         </div>
         
-          <a type="button" href="bocaagua" class="btn btn-primary">
-            <img src="img/boca-de-aguas.png" height="30" width="30">
-            Boca de Agua</a>
+          <a type="button" href="bocaagua" class="btn btn-primary">Boca de Agua</a>
       
           <a type="button" href="herramienta" class="btn btn-primary">Herramientas</a>
         

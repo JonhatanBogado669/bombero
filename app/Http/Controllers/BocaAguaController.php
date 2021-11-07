@@ -12,10 +12,12 @@ class BocaAguaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data= BocaAgua::all();
-        return view('bocaagua.index', compact('data'));
+        $buscar=$request->get('buscar');
+        $data= BocaAgua::where('numero','like','%'.$buscar.'%')
+            ->get(['boca_agua.id','boca_agua.direccion','boca_agua.numero','boca_agua.latitud','boca_agua.longitud']);
+    return view('bocaagua.index', compact('data','buscar'));
     }
 
     /**

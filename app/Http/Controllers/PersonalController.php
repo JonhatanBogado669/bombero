@@ -15,16 +15,18 @@ class PersonalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $personal=Personal::join('rango','rango.id','=','personal.rango_id')
+        $buscar=$request->get('buscar');
+        $personal=Personal::where('documento','like','%'.$buscar.'%')
+            ->join('rango','rango.id','=','personal.rango_id')
             ->join('labor','labor.id','=','personal.labor_id')
             ->join('tipo_rango as tr','tr.id','=','rango.tipo_rango_id')
             ->orderBy('personal.id','ASC')
             ->get(['personal.id','personal.nombre','personal.telefono','personal.documento','personal.direccion',
             'rango.id as idrango','rango.descripcion as rango','tr.descripcion as tipo_rango',
             'labor.id as idlabor','labor.nombre as labor']);
-        return view('personal.index', ['personal' => $personal]);
+        return view('personal.index', ['personal' => $personal,'buscar' =>$buscar]);
     }
 
     /**
