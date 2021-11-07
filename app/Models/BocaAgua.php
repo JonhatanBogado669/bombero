@@ -19,6 +19,8 @@ class BocaAgua extends Model
         'longitud',
         
         'created_at',
-        'update_at'
+        'updated_at'
     ];
+    
+    
 }
