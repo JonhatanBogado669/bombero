@@ -33,6 +33,8 @@
 
           <a type="button" href="personal" class="btn btn-primary">Personal</a>
 
+          <a type="button" href="insumo" class="btn btn-primary">Siniestro</a>
+
           <a type="button" href="vehiculo" class="btn btn-primary">Vehiculos</a>
 
           <a type="button" href="servicio" class="btn btn-primary">Tipos de Servicios</a>
