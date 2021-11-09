@@ -10,6 +10,7 @@
     <title>Registrar Herramientas</title>
   </head>
   <body>
+      <!--EDICION DE LOS DATOS-->
     <div  class="container">
         <form action="{{ route('herramienta.update', $herramienta->id)}}" method="POST">
                 @csrf

@@ -10,10 +10,11 @@
     <title>Registrar Personal</title>
   </head>
   <body>
-      
+      <!--VISUALIZACION DE DATOS CON BOTONES DE MODIFICACION Y BORRADO-->
     <div class="container">
       <h3>Lista de Personal</h3>
       <form class="form-inline">
+        <!--FILTRADO DE DATOS-->
         <div class="form-group">
           <input type="search" class="form-control" name="buscar" placeholder="Buscar por documento" value="{{ $buscar }}">
         </div> 

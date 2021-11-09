@@ -14,7 +14,7 @@
     <title>Registrar Herramientas</title>
   </head>
   <body>
-      
+      <!--INDEX DE HERRAMIENTAS CON LOS DATOS Y FILTRADOR DE DATOS-->
     <div class="container">
       <h3>Lista de Herramientas</h3>
       <form class="form-inline">
@@ -55,6 +55,7 @@
             @endforeach
           </tbody>
         </table>
+        <!--REDIRECCION-->
         <a type="button" href="{{route('herramienta.create') }}" class="btn btn-primary">Crear</a>
         <a type="button" href="{{route('menu.index') }}" class="btn btn-secondary">Atrás</a>
     </div>

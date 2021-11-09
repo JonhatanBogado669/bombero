@@ -10,6 +10,7 @@
     <title>Registrar Siniestro</title>
   </head>
   <body>
+      <!--ENTRADA DE DATOS-->
     <div  class="container">
         <form action="{{ route('siniestro.store')}}" method="POST">
                 @csrf

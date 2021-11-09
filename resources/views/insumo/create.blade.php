@@ -10,6 +10,7 @@
     <title>Registrar Insumos</title>
   </head>
   <body>
+    <!--INGRESO DE DATOS-->
     <div  class="container">
         <form action="{{ route('insumo.store')}}" method="POST">
                 @csrf

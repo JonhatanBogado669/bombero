@@ -10,6 +10,7 @@
     <title>Registrar Personal</title>
   </head>
   <body>
+      <!--CARGA DE DATOS-->
     <div  class="container">
         <form action="{{ route('personal.store')}}" method="POST">
                 @csrf

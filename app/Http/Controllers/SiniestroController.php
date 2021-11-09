@@ -15,6 +15,7 @@ class SiniestroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //CONEXION CON LAS TABLAS SINIESTRO, SOLICITUD Y BOCA_AGUA
     public function index()
     {
         $siniestro=Siniestro::join('solicitud as s','s.id','=','siniestro.solicitud_id')

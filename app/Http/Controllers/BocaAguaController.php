@@ -12,6 +12,7 @@ class BocaAguaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //CONEXION CON LAS TABLAS boca_agua Y SU RELACIONES
     public function index(Request $request)
     {
         $buscar=$request->get('buscar');

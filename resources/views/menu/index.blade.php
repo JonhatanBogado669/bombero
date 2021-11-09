@@ -18,7 +18,7 @@
     <title>Menu</title>
   </head>
   <body>
-      
+      <!--MENU PRINCIPAL CON BOTONES DE REDIRECCION A CADA FUNCION DE LA APP-->
     <div class="cont">
       <form class="formu">
         <div class="form-group">

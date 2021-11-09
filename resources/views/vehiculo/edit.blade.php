@@ -10,6 +10,7 @@
     <title>Registrar Vehiculos</title>
   </head>
   <body>
+      <!--EDICION DE DATOS-->
     <div  class="container">
         <form action="{{ route('vehiculo.update', $vehiculo->id)}}" method="POST">
                 @csrf

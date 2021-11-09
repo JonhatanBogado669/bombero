@@ -10,7 +10,7 @@
     <title>Registro de siniestros</title>
   </head>
   <body>
-      
+      <!--VISUALIZACION DE DATOS DE SINIESTRO CON BOTONES DE EDICION Y ELIMINACION-->
     <div class="container">
       <h3>Lista de Siniestros</h3>
         <table class="table">

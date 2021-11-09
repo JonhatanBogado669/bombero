@@ -14,6 +14,7 @@ class HerramientaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //FILTRADO DE DATOS DE HERRAMIENTAS JUNTO A LOS TIPOS Y ESTADOS DE LOS MISMOS
     public function index(Request $request)
     {
         $buscar=$request->get('buscar');

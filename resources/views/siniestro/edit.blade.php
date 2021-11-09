@@ -10,6 +10,7 @@
     <title>Edicion de siniestros</title>
   </head>
   <body>
+      <!--EDICION DE DATOS-->
     <div  class="container">
         <form action="{{ route('siniestro.update', $siniestro->id)}}" method="POST">
                 @csrf

@@ -9,16 +9,19 @@
 
     <title>Registrar boca de agua</title>
   </head>
+  
   <body>
-      
+      <!--INDEX DE BOCA DE AGUA-->
     <div class="container">
       <h3>Lista de boca de agua</h3>
       <form class="form-inline">
+        <!--FILTRADOR DE DATOS-->
         <div class="form-group">
           <input type="search" class="form-control" name="buscar" placeholder="Buscar por Numero" value="{{ $buscar }}">
         </div> 
           <button type="submit" class="btn btn-success">Buscar</button>
       </form>
+      <!--DATOS DE LAS TABLAS-->
         <table class="table">
           <thead>
             <tr>
@@ -43,7 +46,7 @@
 
                     @csrf
                     @method('DELETE')
-
+                  <!--BORRADO DE UN CAMPO-->
                     <button type="submit" class="btn btn-danger">Delete</button>
                   </form>
                 </td>
@@ -51,6 +54,7 @@
             @endforeach
           </tbody>
         </table>
+        <!--REDIRECCION A .CREATE Y .INDEX-->
         <a type="button" href="{{route('bocaagua.create') }}" class="btn btn-primary">Crear</a>
         <a type="button" href="{{route('menu.index') }}" class="btn btn-secondary">Atrás</a>
     </div>

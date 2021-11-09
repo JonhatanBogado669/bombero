@@ -10,7 +10,7 @@
     <title>Registrar Vehiculos</title>
   </head>
   <body>
-      
+      <!--VISUALIZACION DE DATOS DE LOSS VEHIULOS CON FILTRADOR DE DATOS Y BOTONES DE EDIT Y DELETE-->
     <div class="container">
       <h3>Lista de Vehiculos</h3>
       <form class="form-inline">

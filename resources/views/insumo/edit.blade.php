@@ -10,6 +10,7 @@
     <title>Registrar Insumos</title>
   </head>
   <body>
+    <!--MODIFICACION DE LOS DATOS-->
     <div  class="container">
         <form action="{{ route('insumo.update', $insumo->id)}}" method="POST">
                 @csrf

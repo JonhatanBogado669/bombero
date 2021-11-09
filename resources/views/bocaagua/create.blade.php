@@ -10,6 +10,7 @@
     <title>Registrar Herramientas</title>
   </head>
   <body>
+      <!--INGRESO DE DATOS-->
     <div  class="container">
         <form action="{{ route('bocaagua.store')}}" method="POST">
                 @csrf

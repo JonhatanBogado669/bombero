@@ -10,7 +10,7 @@
     <title>Registrar Insumos</title>
   </head>
   <body>
-      
+      <!---INDEX CON FILTADOR Y VISUALIZACION DE DATOS-->
     <div class="container">
       <h3>Lista de Insumos</h3>
       <form class="form-inline">
@@ -41,6 +41,7 @@
 
                     @csrf
                     @method('DELETE')
+                    <!--BORRADO DE DATOS-->
 
                     <button type="submit" class="btn btn-danger">Delete</button>
                   </form>

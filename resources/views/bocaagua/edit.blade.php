@@ -10,6 +10,7 @@
     <title>Registrar Boca agua</title>
   </head>
   <body>
+      <!--EDICION DE LOS DATOS-->
     <div  class="container">
         <form action="{{ route('bocaagua.update', $data->id)}}" method="POST">
                 @csrf
