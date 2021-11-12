@@ -15,6 +15,7 @@ class PersonalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //CONSULTA A BASE DE DATOS PARA VISUALIZAR DATOS DEL PERSONAL JUNTO CON EL RANGO Y LABOR CORRESPONDIENTE
     public function index(Request $request)
     {
         $buscar=$request->get('buscar');

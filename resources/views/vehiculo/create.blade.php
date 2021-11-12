@@ -11,6 +11,7 @@
     <title>Registrar Vehiculos</title>
   </head>
   <body>
+      <!--CARGADO DE LOS DATOS-->
     <div  class="container">
         <form action="{{ route('vehiculo.store')}}" method="POST">
                 @csrf

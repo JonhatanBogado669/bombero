@@ -10,6 +10,7 @@
     <title>Editar Personal</title>
   </head>
   <body>
+      <!--EDICION DE DATOS-->
     <div  class="container">
         <form action="{{ route('personal.update', $personal->id)}}" method="POST">
                 @csrf

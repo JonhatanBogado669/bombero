@@ -12,6 +12,7 @@ class InsumoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //CONEXION CON DATOS DE INSUOS Y RECURSOS QUE SE POSEE
     public function index(Request $request)
     {
         $buscar=$request->get('buscar');
