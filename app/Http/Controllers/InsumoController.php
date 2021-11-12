@@ -37,14 +37,8 @@ class InsumoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\InsumoRequest $request)
     {
-        $request->validate([
-            'codigo'=>'required',
-            'descripcion'=>'required',
-            'stock'=>'required',
-         
-        ]);
         $inputs =$request->all(); 
         Insumo::create($inputs);
 
@@ -82,11 +76,11 @@ class InsumoController extends Controller
      * @param  \App\Models\Insumo  $insumo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(\App\Http\Requests\InsumoRequest $request, $id)
     {
         
         $insumo=Insumo::find($id);
-        $insumo->fill($request->all());
+        $insumo->update($request->all());
         $insumo->save();
         return redirect()->route('insumo.index')
                          ->with('success','Registro de insumo actualizado.');

@@ -48,14 +48,9 @@ class HerramientaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\HerramientaRequest $request)
     {
-        $request->validate([
-            'codigo'=>'required',
-            'nombre'=>'required',
-            'estado_herramienta_id'=>'required',
-            'estado_herramienta_id'=>'required'
-        ]);
+
         $inputs =$request->all(); 
         Herramienta::create($inputs);
 
@@ -95,11 +90,11 @@ class HerramientaController extends Controller
      * @param  \App\Models\Herramienta  $herramienta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(\App\Http\Requests\HerramientaRequest $request, $id)
     {
         
         $herramienta=Herramienta::find($id);
-        $herramienta->fill($request->all());
+        $herramienta->update($request->all());
         $herramienta->save();
         return redirect()->route('herramienta.index')
                          ->with('success','Registro de herramineta actualizado.');

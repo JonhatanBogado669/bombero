@@ -44,14 +44,9 @@ class VehiculoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\VehiculoRequest $request)
     {
-        $request->validate([
-            'patente'=>'required',
-            'codigo'=>'required',
-            'estado_id'=>'required',
-            'tipo_vehiculo_id'=>'required'
-        ]);
+
         $inputs =$request->all(); 
         Vehiculo::create($inputs);
 
@@ -91,10 +86,10 @@ class VehiculoController extends Controller
      * @param  \App\Models\Vehiculo  $vehiculo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(\App\Http\Requests\VehiculoRequest $request, $id)
     {
         $vehiculo=Vehiculo::find($id);
-        $vehiculo->fill($request->all());
+        $vehiculo->update($request->all());
         $vehiculo->save();
         return redirect()->route('vehiculo.index')
                          ->with('success','Registro de vehiculo actualizado.');

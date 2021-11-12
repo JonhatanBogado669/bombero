@@ -13,7 +13,8 @@ class TipoServicio extends Model
 
     protected $fillable = [
         'id',
-        'nombre'
+        'nombre',
+        'descripcion'
         
     ];
 }

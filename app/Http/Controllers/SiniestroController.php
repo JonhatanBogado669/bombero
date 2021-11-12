@@ -43,15 +43,9 @@ class SiniestroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\SiniestroRequest $request)
     {
-        $request->validate([
-            
-            'numero'=>'required',
-            'descripcion'=>'required',
-            'boca_agua_id'=>'required',
-            'solicitud_id'=>'required'
-        ]);
+    
         $inputs =$request->all(); 
         Siniestro::create($inputs);
 
@@ -91,10 +85,10 @@ class SiniestroController extends Controller
      * @param  \App\Models\Solicitud  $solicitud
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(\App\Http\Requests\SiniestroRequest $request,$id)
     {
         $siniestro=Siniestro::find($id);
-        $siniestro->fill($request->all());
+        $siniestro->update($request->all());
         $siniestro->save();
         return redirect()->route('siniestro.index')
                          ->with('success','Registro de siniestro actualizado.');

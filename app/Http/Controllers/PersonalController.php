@@ -47,17 +47,8 @@ class PersonalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\PersonalRequest $request)
     {
-        $request->validate([
-            
-            'nombre'=>'required',
-            'telefono'=>'required',
-            'documento'=>'required',
-            'direccion'=>'required',
-            'rango_id'=>'required',
-            'labor_id'=>'required'
-        ]);
         $inputs =$request->all(); 
         Personal::create($inputs);
 
@@ -97,10 +88,10 @@ class PersonalController extends Controller
      * @param  \App\Models\Personal  $personal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(\App\Http\Requests\PersonalRequest $request,$id)
     {
         $personal=Personal::find($id);
-        $personal->fill($request->all());
+        $personal->update($request->all());
         $personal->save();
         return redirect()->route('personal.index')
                          ->with('success','Registro de personal actualizado.');

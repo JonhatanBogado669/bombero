@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Servicio;
 use Illuminate\Http\Request;
+use App\Models\TipoServicio;
 
 class ServicioController extends Controller
 {
@@ -12,9 +13,12 @@ class ServicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $buscar=$request->get('buscar');
+        $data=TipoServicio::where('numero','like','%'.$buscar.'%')
+        ->get([]);
+        return view('servicio/index', compact('data','buscar'));
     }
 
     /**

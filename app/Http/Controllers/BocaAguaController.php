@@ -36,14 +36,9 @@ class BocaAguaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\BocaaguaRequest $request)
     {
-        $request->validate([
-            'numero'=>'required',
-            'direccion'=>'required',
-            'latitud'=>'required',
-            'longitud'=>'required'
-        ]);
+
         $inputs =$request->all(); 
         BocaAgua::create($inputs);
 
@@ -82,10 +77,10 @@ class BocaAguaController extends Controller
      * @param  \App\Models\BocaAgua  $bocaAgua
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(\App\Http\Requests\BocaaguaRequest $request, $id)
     {
         $data=BocaAgua::find($id);
-        $data->fill($request->all());
+        $data->update($request->all());
         $data->save();
         return redirect()->route('bocaagua.index')
                          ->with('success','Registro de boca de agua actualizado.');
