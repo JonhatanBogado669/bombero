@@ -2,44 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Hash;
 use Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
 class CustomAuthController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('auth.login');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(array $data)
-    {
-      return User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password'])
-      ]);
     }  
+      
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function customLogin(Request $request)
     {
         $request->validate([
@@ -53,26 +30,17 @@ class CustomAuthController extends Controller
                         ->withSuccess('Signed in');
         }
   
-        return redirect("login")->withSuccess('Login details are not valid');
+        return redirect('dashboard')->withSuccess('Login details are not valid');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Herramienta  $herramienta
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function registration()
     {
         return view('auth.registration');
     }
+      
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Herramienta  $herramienta
-     * @return \Illuminate\Http\Response
-     */
     public function customRegistration(Request $request)
     {  
         $request->validate([
@@ -84,20 +52,37 @@ class CustomAuthController extends Controller
         $data = $request->all();
         $check = $this->create($data);
          
-        return redirect("dashboard")->withSuccess('You have signed-in');
+        return redirect("login")->withSuccess('You have signed-in');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Herramienta  $herramienta
-     * @return \Illuminate\Http\Response
-     */
+
+    public function create(array $data)
+    {
+      return User::create([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => Hash::make($data['password'])
+      ]);
+    }    
+    
+
+    public function dashboard()
+    {
+        if(Auth::check()){
+            return view('dashboard');
+        }
+  
+        return redirect("login")->withSuccess('You are not allowed to access');
+    }
+    
+
     public function signOut() {
         Session::flush();
         Auth::logout();
   
         return Redirect('login');
     }
+
+    
 }
+

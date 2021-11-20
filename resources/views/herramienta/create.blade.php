@@ -10,7 +10,9 @@
     <title>Registrar Herramientas</title>
   </head>
   <body>
+      
       <!--INGRESO DE DATOS-->
+      
     <div  class="container">
         <form action="{{ route('herramienta.store')}}" method="POST">
                 @csrf
@@ -43,20 +45,6 @@
                         @endforeach
                     </select>
                 </div>
-                <!--<div class="form-group">
-                    <label for="estado">Estado de Herramienta</label>
-                    <select class="form-control" id="estado">
-                        <option value="1">Activo</option>
-                        <option value="2">Inactivo</option>
-                    </select>
-                </div>   
-                <div class="form-group">
-                    <label for="tipo">Tipo de Herramienta</label>
-                    <select class="form-control" id="tipo">
-                        <option value="1">Activo</option>
-                        <option value="2">Inactivo</option>
-                    </select>
-                </div>-->
                 <div>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                     <a type="button" href="{{route('herramienta.index') }}" class="btn btn-danger">Cancelar</a>
