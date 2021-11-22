@@ -16,8 +16,8 @@ class ServicioController extends Controller
     public function index(Request $request)
     {
         $buscar=$request->get('buscar');
-        $data=TipoServicio::where('numero','like','%'.$buscar.'%')
-        ->get([]);
+        $data=TipoServicio::where('nombre','like','%'.$buscar.'%')
+        ->get(['tipo_servicio.id','tipo_servicio.nombre','tipo_servicio.descripcion']);
         return view('servicio/index', compact('data','buscar'));
     }
 
@@ -28,7 +28,7 @@ class ServicioController extends Controller
      */
     public function create()
     {
-        //
+        return view('servicio.create');
     }
 
     /**
@@ -37,10 +37,16 @@ class ServicioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\ServicioRequest $request)
     {
-        //
+
+        $inputs =$request->all(); 
+        Servicio::create($inputs);
+
+        return redirect()->route('servicio.index')
+                         ->with('success', 'Servicio registrado satisfactoriamente.');
     }
+
 
     /**
      * Display the specified resource.
@@ -59,9 +65,10 @@ class ServicioController extends Controller
      * @param  \App\Models\Servicio  $servicio
      * @return \Illuminate\Http\Response
      */
-    public function edit(Servicio $servicio)
+    public function edit($id)
     {
-        //
+        $servicio=Servicio::find($id);
+        return view('servicio.edit', compact('servicio'));
     }
 
     /**
@@ -71,9 +78,14 @@ class ServicioController extends Controller
      * @param  \App\Models\Servicio  $servicio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Servicio $servicio)
+    public function update(\App\Http\Requests\ServicioRequest $request, $id)
     {
-        //
+        
+        $servicio=Servicio::find($id);
+        $servicio->update($request->all());
+        $servicio->save();
+        return redirect()->route('servicio.index')
+                         ->with('success','Registro de Servicio actualizado.');
     }
 
     /**
@@ -82,8 +94,12 @@ class ServicioController extends Controller
      * @param  \App\Models\Servicio  $servicio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Servicio $servicio)
+    public function destroy($id)
     {
-        //
+        $servicio=Servicio::findOrFail($id);
+        $servicio->delete();
+
+        return redirect()->route('servicio.index')
+                         ->with('success','Registro de servicio eliminado.');
     }
 }

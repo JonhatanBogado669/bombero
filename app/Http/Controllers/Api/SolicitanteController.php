@@ -3,73 +3,87 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Solicitante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\SolicitanteResource;
 
 class SolicitanteController extends Controller
 {
-    public function index(){
-        $solicitante=Solicitante::all();
-        return response()->json([
-            "success"=>true,
-            "message"=>"Lista Solicitante",
-            "data"=>$solicitante
-        ]);
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $solicitante = Solicitante::all();
+        return response([ 'solicitante' => SolicitanteResource::collection($solicitante), 'message' => 'Retrieved successfully'], 200);
     }
 
-    public function store(Request $request){
-        $input=$request->all();
-        $validator=Validator::make($input,[
-            'nombre'=>'required',
-            'documento'=>'required',
-            'telefono'=>'required',
-            'direccion'=>'required',
-            'servicio_id'=>'required'
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+           
+            'nombre' => 'required|max:255',
+            'documento' => 'required',
+            'direccion' => 'required|max:255',
+            'telefono' => 'required|max:255',
+            'servicio_id' => 'required',
         ]);
-        if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());
+
+        if ($validator->fails()) {
+            return response(['error' => $validator->errors(), 'Validation Error']);
         }
-        $solicitante=Solicitante::create($input);
-        return response()->json([
-            "success"=>true,
-            "message"=>"Lista Solicitante",
-            "data"=>$solicitante
-        ]);
+
+        $solicitante = Solicitante::create($data);
+
+        return response(['solicitante' => new SolicitanteResource($solicitante), 'message' => 'Created successfully'], 201);
     }
 
-    public function show(){
-        //
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Solicitante  $Solicitante
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Solicitante $solicitante)
+    {
+       //
     }
 
-    public function update(Request $request, Solicitante $solicitante){
-        $input=$request->all();
-        $validator=Validator::make($input,[
-            'nombre'=>'required',
-            'documento'=>'required',
-            'telefono'=>'required',
-            'direccion'=>'required',
-            'servicio_id'=>'required'
-        ]);
-        if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());
-        }
-        $solicitante->nombre = $input['nombre'];
-        $solicitante->documento = $input['documento'];
-        $solicitante->telefono = $input['telefono'];
-        $solicitante->direccion = $input['direccion'];
-        $solicitante->servicio_id = $input['servicio_id'];
-        return response()->json([
-            "success"=>true,
-            "message"=>"Lista Solicitante",
-            "data"=>$solicitante
-        ]);
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Solicitante  $Solicitante
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Solicitante $solicitante)
+    {
+        $solicitante->update($request->all());
+
+        return response(['solicitante' => new SolicitanteResource($solicitante), 'message' => 'Update successfully'], 200);
     }
 
-    public function destroy(Solicitante $solicitante){
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Solicitante  $Solicitante
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Solicitante $solicitante)
+    {
         $solicitante->delete();
-        return response()->json([
-            "success"=>true,
-            "message"=>"Lista Solicitante",
-            "data"=>$solicitante
-        ]);
+
+        return response(['message' => 'Deleted']);
     }
 }
