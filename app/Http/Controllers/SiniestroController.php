@@ -18,6 +18,7 @@ class SiniestroController extends Controller
     //CONEXION CON LAS TABLAS SINIESTRO, SOLICITUD Y BOCA_AGUA
     public function index()
     {
+        
         $siniestro=Siniestro::join('solicitud as s','s.id','=','siniestro.solicitud_id')
             ->join('boca_agua as b','b.id','=','siniestro.boca_agua_id')
             ->orderBy('siniestro.id','ASC')
