@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Solicitante;
@@ -15,9 +15,11 @@ class SolicitanteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $solicitante = Solicitante::all();
+        $buscar=$request->get('buscar');
+        $solicitante = Solicitante::where('documento','like','%'.$buscar.'%')
+        ->get(['id','nombre','documento','direccion','telefono','servicio_id']);
         return response([ 'solicitante' => SolicitanteResource::collection($solicitante), 'message' => 'Retrieved successfully'], 200);
     }
 
@@ -32,11 +34,10 @@ class SolicitanteController extends Controller
         $data = $request->all();
 
         $validator = Validator::make($data, [
-           
-            'nombre' => 'required|max:255',
+            'nombre' => 'required',
             'documento' => 'required',
-            'direccion' => 'required|max:255',
-            'telefono' => 'required|max:255',
+            'direccion' => 'required',
+            'telefono' => 'required',
             'servicio_id' => 'required',
         ]);
 
@@ -52,19 +53,19 @@ class SolicitanteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Solicitante  $Solicitante
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
     public function show(Solicitante $solicitante)
     {
-       //
+        return response(['solicitante' => new SolicitanteResource($solicitante), 'message' => 'Retrieved successfully'], 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Solicitante  $Solicitante
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Solicitante $solicitante)
@@ -77,7 +78,7 @@ class SolicitanteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Solicitante  $Solicitante
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
     public function destroy(Solicitante $solicitante)
