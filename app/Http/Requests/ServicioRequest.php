@@ -24,9 +24,8 @@ class ServicioRequest extends FormRequest
     public function rules()
     {
         return [
-            'id'=>'required',
             'nombre'=>'required',
-            'descripcion'=>'required'
+            'descripcion'=>'required',
         ];
     }
 }

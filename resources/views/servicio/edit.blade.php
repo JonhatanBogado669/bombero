@@ -15,7 +15,7 @@
                 </div>
                 <div class="form-group">
                     <label for="input">Descripción</label>
-                    <input type="text" class="form-control" id="descripcion" name="descripcion"  value="{{$servico->descripcion}}">
+                    <input type="text" class="form-control" id="descripcion" name="descripcion"  value="{{$servicio->descripcion}}">
                 </div>
                 <div>
                     <button type="submit" class="btn btn-primary">Guardar</button>

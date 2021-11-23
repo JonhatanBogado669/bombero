@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Servicio;
 use Illuminate\Http\Request;
 use App\Models\TipoServicio;
 
@@ -41,7 +40,7 @@ class ServicioController extends Controller
     {
 
         $inputs =$request->all(); 
-        Servicio::create($inputs);
+        TipoServicio::create($inputs);
 
         return redirect()->route('servicio.index')
                          ->with('success', 'Servicio registrado satisfactoriamente.');
@@ -54,7 +53,7 @@ class ServicioController extends Controller
      * @param  \App\Models\Servicio  $servicio
      * @return \Illuminate\Http\Response
      */
-    public function show(Servicio $servicio)
+    public function show(TipoServicio $servicio)
     {
         //
     }
@@ -67,7 +66,7 @@ class ServicioController extends Controller
      */
     public function edit($id)
     {
-        $servicio=Servicio::find($id);
+        $servicio=TipoServicio::find($id);
         return view('servicio.edit', compact('servicio'));
     }
 
@@ -81,7 +80,7 @@ class ServicioController extends Controller
     public function update(\App\Http\Requests\ServicioRequest $request, $id)
     {
         
-        $servicio=Servicio::find($id);
+        $servicio=TipoServicio::find($id);
         $servicio->update($request->all());
         $servicio->save();
         return redirect()->route('servicio.index')
@@ -96,7 +95,7 @@ class ServicioController extends Controller
      */
     public function destroy($id)
     {
-        $servicio=Servicio::findOrFail($id);
+        $servicio=TipoServicio::findOrFail($id);
         $servicio->delete();
 
         return redirect()->route('servicio.index')

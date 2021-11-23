@@ -40,8 +40,11 @@
                                 </div>
                             </div>
 
-                            <div class="d-grid mx-auto">
-                                <button type="submit" class="btn btn-dark btn-block">Sign up</button>
+                            <div class="form-group mb-3">
+                                <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+                            </div>
+                            <div class="form-group mb-3">
+                                <a href="login" type="button" class="btn btn-danger btn-block">Cancel</a>
                             </div>
                         </form>
 

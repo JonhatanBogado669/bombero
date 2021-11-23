@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="card">
-                    <h3 class="card-header text-center">Login</h3>
+                    <h3 class="text-center">Login</h3>
                     <div class="card-body">
                         <form method="POST" action="{{ route('login.custom') }}">
                             @csrf
@@ -32,9 +32,11 @@
                                     </label>
                                 </div>
                             </div>
-
-                            <div class="d-grid mx-auto">
-                                <button type="submit" class="btn btn-dark btn-block">Signin</button>
+                            <div class="form-group mb-3">
+                                <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                            </div>
+                            <div class="form-group mb-3">
+                                <a href="registration" type="button" class="btn btn-success btn-block">Registration</a>
                             </div>
                         </form>
 
